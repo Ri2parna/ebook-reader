@@ -78,6 +78,13 @@ export default function Reader(props: { book: OpenedBook; onBack: () => void }) 
         ref={frame}
         class="reader-frame"
         title={props.book.title}
+        style={() => {
+          if (props.book.kind !== "pdf") return {};
+          const t = resolvedTheme();
+          if (t === "dark") return { filter: "invert(1) hue-rotate(180deg)" };
+          if (t === "sepia") return { filter: "sepia(0.55) contrast(0.95)" };
+          return {};
+        }}
         onLoad={() => applyStyle()}
       />
     </div>
