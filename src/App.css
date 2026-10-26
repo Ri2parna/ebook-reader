@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, "Segoe UI", "Noto Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  height: 100%;
+  background: var(--chrome-bg);
+  color: var(--chrome-fg);
+}
+
+/* Landing */
+
+.landing {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  user-select: none;
+}
+
+.landing-title {
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.landing-sub {
+  color: var(--chrome-muted);
+  margin: 0 0 1em;
+}
+
+.landing-sub code {
+  background: var(--chrome-border);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.landing-open {
+  padding: 0.6em 1.6em;
+  border: 1px solid var(--chrome-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--chrome-fg);
+  font-size: 0.95em;
+  cursor: pointer;
+}
+
+.landing-open:hover {
+  background: var(--chrome-border);
+}
+
+.landing-error {
+  color: #c0492f;
+  margin-top: 1em;
+  max-width: 70ch;
+}
+
+/* Reader chrome */
+
+.reader {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  padding: 0.45em 0.8em;
+  border-bottom: 1px solid var(--chrome-border);
+  user-select: none;
+}
+
+.toolbar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9em;
+  color: var(--chrome-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 0.4em;
+}
+
+.tool-btn {
+  border: 1px solid var(--chrome-border);
+  background: transparent;
+  color: var(--chrome-fg);
+  border-radius: 6px;
+  padding: 0.3em 0.7em;
+  font-size: 0.85em;
+  cursor: pointer;
+}
+
+.tool-btn:hover {
+  background: var(--chrome-border);
+}
+
+.tool-btn.active {
+  background: var(--chrome-border);
+}
+
+.reader-frame {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: var(--chrome-bg);
+}
+
+/* Typography panel */
+
+.typography-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2em;
+  padding: 0.9em 1.2em;
+  border-bottom: 1px solid var(--chrome-border);
+  background: var(--chrome-bg);
+}
+
+.typo-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45em;
+  min-width: 150px;
+}
+
+.typo-label {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--chrome-muted);
+}
+
+.typo-row {
+  display: flex;
+  gap: 0.35em;
+}
+
+.typo-option {
+  border: 1px solid var(--chrome-border);
+  background: transparent;
+  color: var(--chrome-fg);
+  border-radius: 6px;
+  padding: 0.25em 0.65em;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+.typo-option.active {
+  background: var(--chrome-fg);
+  color: var(--chrome-bg);
+}
+
+.typo-group input[type="range"] {
+  width: 160px;
+  accent-color: var(--chrome-fg);
+}
