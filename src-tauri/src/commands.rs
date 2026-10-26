@@ -63,6 +63,11 @@ pub fn open_book(path: String, registry: State<'_, DocRegistry>) -> Result<Opene
         }
     };
 
+    let file = path
+        .file_name()
+        .and_then(|s| s.to_str())
+        .unwrap_or("")
+        .to_string();
     registry.insert(Document {
         id: id.clone(),
         path,
@@ -70,11 +75,6 @@ pub fn open_book(path: String, registry: State<'_, DocRegistry>) -> Result<Opene
         title: title.clone(),
         payload,
     });
-    let file = path
-        .file_name()
-        .and_then(|s| s.to_str())
-        .unwrap_or("")
-        .to_string();
     Ok(OpenedBook {
         id,
         title,
