@@ -12,7 +12,7 @@ export default function Reader(props: { book: OpenedBook; onBack: () => void }) 
 
   function applyStyle(css?: string) {
     const doc = frame.contentDocument;
-    if (!doc) return;
+    if (!doc || !doc.head) return;
     let style = doc.head.querySelector<HTMLStyleElement>("#reader-style");
     if (!style) {
       style = doc.createElement("style");
@@ -33,7 +33,12 @@ export default function Reader(props: { book: OpenedBook; onBack: () => void }) 
 
   onMount(async () => {
     scheme.addEventListener("change", onSchemeChange);
-    frame.srcdoc = await readChapter(props.book.id, 0);
+    if (props.book.kind === "pdf" && props.book.file) {
+      const name = encodeURIComponent(props.book.file);
+      frame.src = `book://local/${props.book.id}/${name}`;
+    } else {
+      frame.srcdoc = await readChapter(props.book.id, 0);
+    }
   });
 
   onCleanup(() => scheme.removeEventListener("change", onSchemeChange));

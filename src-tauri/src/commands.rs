@@ -13,6 +13,8 @@ pub struct OpenedBook {
     pub kind: BookKind,
     #[serde(rename = "spineLen")]
     pub spine_len: usize,
+    #[serde(rename = "file")]
+    pub file: String,
 }
 
 #[tauri::command]
@@ -24,11 +26,18 @@ pub fn open_book(path: String, registry: State<'_, DocRegistry>) -> Result<Opene
     let kind = formats::detect(&path)?;
     let id = doc_id(&path);
     if let Ok(cached) = registry.with(&id, |doc| {
+        let file = doc
+            .path
+            .file_name()
+            .and_then(|s| s.to_str())
+            .unwrap_or("")
+            .to_string();
         Ok(OpenedBook {
             id: doc.id.clone(),
             title: doc.title.clone(),
             kind: doc.kind,
             spine_len: 1,
+            file,
         })
     }) {
         return Ok(cached);
@@ -61,11 +70,17 @@ pub fn open_book(path: String, registry: State<'_, DocRegistry>) -> Result<Opene
         title: title.clone(),
         payload,
     });
+    let file = path
+        .file_name()
+        .and_then(|s| s.to_str())
+        .unwrap_or("")
+        .to_string();
     Ok(OpenedBook {
         id,
         title,
         kind,
         spine_len: 1,
+        file,
     })
 }
 

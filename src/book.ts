@@ -7,6 +7,7 @@ export interface OpenedBook {
   title: string;
   kind: BookKind;
   spineLen: number;
+  file: string;
 }
 
 export async function openBook(path: string): Promise<OpenedBook> {
