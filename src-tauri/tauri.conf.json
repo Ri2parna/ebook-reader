@@ -18,7 +18,7 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self' ipc:; img-src 'self' data: book:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self'"
+      "csp": "default-src 'self' ipc:; img-src 'self' data: book: http://book.local https://book.local; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' book: http://book.local https://book.local"
     }
   },
   "bundle": {
